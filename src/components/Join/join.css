@@ -1,0 +1,42 @@
+.join-container {
+  padding: 40px;
+}
+
+.join-container__title {
+  font-size: 32px;
+  font-weight: normal;
+}
+
+.jform {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.jform__label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.jform__input {
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  margin-top: 4px;
+  height: 24px;
+  font-size: 14px;
+  padding: 8px 12px;
+  width: -webkit-fill-available;
+}
+
+.jform__btn {
+  align-self: flex-end;
+  background-color: #ff8201;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+  margin-top: 40px;
+  padding: 0 40px;
+}
