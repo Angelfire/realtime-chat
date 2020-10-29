@@ -1,0 +1,6 @@
+.box-container {
+  border: 2px solid #e6e6e6;
+  border-radius: 10px;
+  box-shadow: -5px 3px 13px 0px rgba(71, 71, 71, 0.09);
+  width: 600px;
+}

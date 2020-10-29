@@ -1,8 +1,12 @@
 import React from 'react';
+import Join from './components/Join/Join';
+
+import './styles/global.css';
+import './styles/app.css';
 
 const App = () => (
-  <div className="continer">
-    hola mundo pager
+  <div className="container">
+    <Join />
   </div>
 );
 
