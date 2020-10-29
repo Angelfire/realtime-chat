@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '../shared/Box/Box';
 
 import './join.css';
 
 const Join = () => {
+  const [userName, setUserName] = useState('');
+
+  const handleUserNameChange = (event) => {
+    setUserName(event.target.value);
+  };
+
   return (
     <Box>
       <div className="join-container">
@@ -11,7 +17,13 @@ const Join = () => {
         <form className="jform">
           <label className="jform__label" htmlFor="username">
             Please enter your username
-            <input className="jform__input" type="text" name="username" />
+            <input
+              className="jform__input"
+              type="text"
+              name="username"
+              onChange={ handleUserNameChange }
+              value={ userName }
+            />
           </label>
           <button className="jform__btn">Next</button>
         </form>

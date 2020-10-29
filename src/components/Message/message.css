@@ -1,0 +1,28 @@
+.message-container {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.message-container__avatar {
+  height: 40px;
+  width: 40px;
+  margin-right: 14px;
+}
+
+.msg-content__author {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.msg-content__date {
+  color: #c5c5c5;
+  font-size: 12px;
+  font-weight: normal;
+  margin-left: 8px;
+}
+
+.msg-content__texts p {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
