@@ -2,24 +2,19 @@ import React, { useContext, useEffect } from 'react';
 import InputMessage from '../InputMessage/InputMesage';
 import Layout from '../shared/Layout/Layout';
 import Messages from '../Messages/Messages';
-import axios from 'axios';
 import { SocketIOContext } from '../../contexts/SocketIOP';
 import { UserContext } from '../../contexts/UserP';
-import { AVATAR_INITIALS, SERVER_EVENTS } from '../../Utils/const'
+import { SERVER_EVENTS } from '../../Utils/const'
 
 import './chatroom.css';
 
 const ChatRoom = () => {
   const { setUserOnline, socket, userOnline } = useContext(SocketIOContext);
   const {
-    avatar,
-    setAvatar,
-    setAvatarLoading,
     setMessages,
     setTypers,
     setUserList,
     user,
-    userList,
   } = useContext(UserContext);
 
   useEffect(() => {
@@ -39,32 +34,6 @@ const ChatRoom = () => {
       }
     });
   }, []);
-
-  useEffect(() => {
-    userList.forEach(user => {
-      if (!avatar[user]) {
-        setAvatarLoading(state => {
-          return {
-            ...state,
-            [user]: true
-          };
-        });
-        axios
-          .get(`${AVATAR_INITIALS}/?name=${user}`, {
-            responseType: 'blob'
-          })
-          .then(response => {
-            setAvatar(user, URL.createObjectURL(response.data));
-            setAvatarLoading(state => {
-              return {
-                ...state,
-                [user]: false
-              };
-            });
-          });
-      }
-    });
-  }, [userList]);
 
   return (
     <Layout>

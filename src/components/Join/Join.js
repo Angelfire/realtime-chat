@@ -21,9 +21,9 @@ const Join = () => {
             Please enter your username
             <input
               className="jform__input"
-              type="text"
               name="username"
               onChange={ handleUserNameChange }
+              type="text"
             />
           </label>
           <Link to="/chatroom" className="jform__btn">
