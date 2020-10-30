@@ -38,7 +38,7 @@ export const UserP = ({ children }) => {
         userList
       }}
     >
-      {children}
+      { children }
     </UserContext.Provider>
   );
 };
