@@ -1,18 +1,12 @@
-import React, { useContext } from 'react';
-import { UserContext } from '../../contexts/UserP';
+import React from 'react';
+
+import './avatar.css';
 
 const Avatar = ({ currentUser = 'default' }) => {
-  const { avatar } = useContext(UserContext);
-
-  console.log(avatar);
 
   return (
-    <div>
-      {avatar[currentUser] ? (
-        <img src={ avatar[currentUser] } alt={ currentUser } />
-      ) : (
-        <img src={ avatar['default'] } alt="default" />
-      )}
+    <div className="avatar-container">
+      <img src={`https://ui-avatars.com/api/?name=${currentUser}`} alt={ currentUser } />
     </div>
   );
 };

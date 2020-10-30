@@ -2,27 +2,23 @@ import React, { createContext, useState } from 'react';
 
 export const UserContext = createContext({});
 
-const UserP = ({ children }) => {
-  const [avatar, setAvatar] = useState({});
-  const [avatarLoading, setAvatarLoading] = useState({ 'default': false });
-  const [typers, setTypers] = useState({});
+export const UserP = ({ children }) => {
   const [messages, setMessages] = useState([]);
+  const [stickers, setStickers] = useState([]);
+  const [typers, setTypers] = useState({});
   const [user, setUser] = useState('');
   const [userList, setUserList] = useState(['default']);
 
   return (
     <UserContext.Provider
       value={{
-        avatar,
-        avatarLoading,
         messages,
-        setAvatar,
-        setAvatarLoading,
         setMessages: message => {
           setMessages(state => {
-            return [...state, { ...message, date: new Date(message.time) }];
+            return [...state, { ...message }];
           });
         },
+        setStickers,
         setTypers,
         setUser,
         setUserList: onlineUser => {
@@ -36,6 +32,7 @@ const UserP = ({ children }) => {
             }
           });
         },
+        stickers,
         typers,
         user,
         userList
