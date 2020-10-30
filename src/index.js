@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import UserP from './contexts/UserP';
 import App from './App';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const AppProvider = () => (
+  <UserP>
+    <App />
+  </UserP>
+);
+
+ReactDOM.render(<AppProvider />, document.getElementById('app'));

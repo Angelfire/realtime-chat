@@ -1,14 +1,26 @@
 import React from 'react';
-// import Join from './components/Join/Join';
-import ChatRoom from './components/ChatRoom/ChatRoom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Join from './components/Join/Join';
+import ChatInterceptor from './components/ChatRoom/ChatInterceptor';
 
 import './styles/global.css';
 import './styles/app.css';
 
-const App = () => (
-  <div className="container">
-    <ChatRoom />
-  </div>
-);
+const App = () => {
+  return (
+    <Router>
+      <div className="container">
+        <Switch>
+          <Route exact path='/'>
+            <Join />
+          </Route>
+          <Route path='/chatroom'>
+            <ChatInterceptor />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+};
 
 export default App;
