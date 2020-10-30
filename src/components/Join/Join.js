@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import Box from '../shared/Box/Box';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import Layout from '../shared/Layout/Layout';
+import { UserContext } from '../../contexts/UserP';
 
 import './join.css';
 
 const Join = () => {
-  const [userName, setUserName] = useState('');
+  const { setUser } = useContext(UserContext);
 
   const handleUserNameChange = (event) => {
-    setUserName(event.target.value);
+    setUser(event.target.value);
   };
 
   return (
-    <Box>
+    <Layout>
       <div className="join-container">
         <h2 className="join-container__title">Join chat</h2>
         <form className="jform">
@@ -22,13 +24,14 @@ const Join = () => {
               type="text"
               name="username"
               onChange={ handleUserNameChange }
-              value={ userName }
             />
           </label>
-          <button className="jform__btn">Next</button>
+          <Link to="/chatroom" className="jform__btn">
+            Next
+          </Link>
         </form>
       </div>
-    </Box>
+    </Layout>
   )
 };
 
