@@ -24,9 +24,10 @@ export const queryString = params =>
 
 export const getGiphy = tag => 
   axios
-    .get(`${GIPHY_BASE_URL}?${queryString({
-      api_key: `${GIPHY_API_KEY}`,
-      q: tag,
-      limit: 1
-    })}`)
-    .then((resp) => resp.data);
+  .get(GIPHY_BASE_URL, {
+    params: {
+      api_key: GIPHY_API_KEY,
+      tag,
+    },
+  })
+  .then((resp) => resp.data.data);

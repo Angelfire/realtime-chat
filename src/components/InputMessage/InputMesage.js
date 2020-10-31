@@ -45,17 +45,21 @@ const InputMessage = () => {
         if (message.match(/\gif /gm)) {
           const tagValue = message.split('/gif ');
 
+          if (timeout) {
+            clearTimeout(timeout);
+          }
+
           if (tagValue[1].length > 1) {
             timeout = setTimeout(() => {
               getGiphy(tagValue[1]).then(resp => {
-                const { image_url: url, title: alt } = resp.data;
+                const { image_url: url, title: alt } = resp;
 
                 socket.emit(CLIENT_EVENTS.IMAGE_MESSAGE, {
                   alt,
                   url
                 });
               });
-            }, 3000);
+            }, 1000);
           }
         }
       } else {
@@ -70,6 +74,7 @@ const InputMessage = () => {
         <input
           className="elements__input"
           onChange={ handleMessageChange }
+          placeholder="Message"
           type="text"
           value={ message }
         />

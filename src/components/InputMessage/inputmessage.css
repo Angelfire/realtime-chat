@@ -1,5 +1,5 @@
 .im-container {
-  border: 1px solid #e6e6e6;
+  border: 1px solid var(--grey-border);
   border-radius: 8px;
   height: 40px;
 }
@@ -12,21 +12,25 @@
 
 .elements__input {
   border: none;
-  color: #c5c5c5;
+  color: var(--grey-message);
   font-size: 14px;
   flex-grow: 1;
   outline: none;
 }
 
+.elements__input::placeholder {
+  color: var(--grey-message);
+}
+
 .elements__btn {
   background-color: white;
   border: none;
-  color: #c5c5c5;
+  color: var(--grey-message);
   font-size: 14px;
 }
 
 .typers {
-  color: #c5c5c5;
+  color: var(--grey-typing);
   font-size: 12px;
   margin-top: 8px;
 }

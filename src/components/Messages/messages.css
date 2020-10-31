@@ -10,7 +10,7 @@
 }
 
 .msg-content__date {
-  color: #c5c5c5;
+  color: var(--grey-date);
   font-size: 12px;
   font-weight: normal;
   margin-left: 8px;
