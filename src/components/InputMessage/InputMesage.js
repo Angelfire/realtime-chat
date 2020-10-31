@@ -22,6 +22,8 @@ const InputMessage = () => {
     if (userOnline) {
       socket.emit(CLIENT_EVENTS.TEXT_MESSAGE, message);
     }
+
+    setMessage('');
   }
 
   const typersMessage = () => {
@@ -69,6 +71,7 @@ const InputMessage = () => {
           className="elements__input"
           onChange={ handleMessageChange }
           type="text"
+          value={ message }
         />
         <button
           className="elements__btn"
