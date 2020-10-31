@@ -7,8 +7,6 @@ import './messages.css';
 const Messages = () => {
   const { messages } = useContext(UserContext);
 
-  console.log(messages);
-
   return (
     <div className="messages-container">
       { messages.map((message, i) => {
