@@ -7,7 +7,10 @@
     "start": "NODE_ENV=development webpack serve --config config/webpack.dev.js",
     "build": "NODE_ENV=production webpack --config config/webpack.dev.js"
   },
-  "author": "",
+  "author": {
+    "name": "Andrés Bedoya",
+    "url": "https://srhart.co/"
+  },
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.12.3",
