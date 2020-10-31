@@ -11,7 +11,7 @@ const InputMessage = () => {
   const [message, setMessage] = useState('');
   const [typer, setTyper] = useState('');
   const { socket, userOnline } = useContext(SocketIOContext);
-  const { typers } = useContext(UserContext);
+  const { user, typers } = useContext(UserContext);
 
   const handleMessageChange = (event) => {
     setMessage(event.target.value);
@@ -25,12 +25,12 @@ const InputMessage = () => {
   }
 
   const typersMessage = () => {
-    const typersArray = Object.keys(typers);
-    const typersCount = typersArray.length;
-    const oneTyper = typersCount === 1;
-    const singularPlural = oneTyper ? 'is' : 'are';
-    const typer = oneTyper ? typersArray[0] : 'People';
-    const typing = typersCount ? `${typer} ${singularPlural} typing` : '';
+    const typersArr = Object.values(typers);
+    const typersCount = typersArr.filter(value => value === true).length;
+    const isSingleTyper = typersCount === 1;
+    const singularPlural = isSingleTyper ? 'is' : 'are';
+    const typerName = isSingleTyper ? user : 'People';
+    const typing = `${typerName} ${singularPlural} typing...`; 
 
     setTyper(typing);
   }
@@ -77,7 +77,7 @@ const InputMessage = () => {
           Send
         </button>
       </div>
-      <p className="typers">{ typer }</p>
+      { message.length > 0 && <p className="typers">{ typer }</p> }
     </div>
   );
 };
