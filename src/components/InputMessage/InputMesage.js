@@ -18,12 +18,45 @@ const InputMessage = () => {
     typersMessage();
   };
 
+  // const handleSubmitMessage = () => {
+  //   if (userOnline) {
+  //     socket.emit(CLIENT_EVENTS.TEXT_MESSAGE, message);
+  //   }
+
+  //   setMessage('');
+  // }
+
   const handleSubmitMessage = () => {
     if (userOnline) {
-      socket.emit(CLIENT_EVENTS.TEXT_MESSAGE, message);
-    }
+      if (message.length > 0) {
+        socket.emit(CLIENT_EVENTS.TYPING, true);
 
-    setMessage('');
+        if (message.match(/\gif /gm)) {
+          const tagValue = message.split('/gif ');
+
+          if (timeout) {
+            clearTimeout(timeout);
+          }
+
+          if (tagValue[1].length > 1) {
+            timeout = setTimeout(() => {
+              getGiphy(tagValue[1]).then(resp => {
+                const { image_url: url, title: alt } = resp;
+
+                socket.emit(CLIENT_EVENTS.IMAGE_MESSAGE, {
+                  alt,
+                  url
+                });
+              });
+            }, 1000);
+          }
+        } else {
+          socket.emit(CLIENT_EVENTS.TEXT_MESSAGE, message);
+        }
+      } else {
+        socket.emit(CLIENT_EVENTS.TYPING, false);
+      }
+    }
   }
 
   const typersMessage = () => {
@@ -32,37 +65,41 @@ const InputMessage = () => {
     const isSingleTyper = typersCount === 1;
     const singularPlural = isSingleTyper ? 'is' : 'are';
     const typerName = isSingleTyper ? user : 'People';
-    const typing = `${typerName} ${singularPlural} typing...`; 
+    const typing = `${typerName} ${singularPlural} typing...`;
 
     setTyper(typing);
   }
 
-  useEffect(() => {
-    if (userOnline) {
-      if (message.length > 0) {
-        socket.emit(CLIENT_EVENTS.TYPING, true);
+  // useEffect(() => {
+  //   if (userOnline) {
+  //     if (message.length > 0) {
+  //       socket.emit(CLIENT_EVENTS.TYPING, true);
 
-        if (message.match(/\gif /gm)) {
-          const tagValue = message.split('/gif ');
+  //       if (message.match(/\gif /gm)) {
+  //         const tagValue = message.split('/gif ');
 
-          if (tagValue[1].length > 1) {
-            timeout = setTimeout(() => {
-              getGiphy(tagValue[1]).then(resp => {
-                const { image_url: url, title: alt } = resp.data;
+  //         if (timeout) {
+  //           clearTimeout(timeout);
+  //         }
 
-                socket.emit(CLIENT_EVENTS.IMAGE_MESSAGE, {
-                  alt,
-                  url
-                });
-              });
-            }, 3000);
-          }
-        }
-      } else {
-        socket.emit(CLIENT_EVENTS.TYPING, false);
-      }
-    } 
-  }, [message, userOnline]);
+  //         if (tagValue[1].length > 1) {
+  //           timeout = setTimeout(() => {
+  //             getGiphy(tagValue[1]).then(resp => {
+  //               const { image_url: url, title: alt } = resp;
+
+  //               socket.emit(CLIENT_EVENTS.IMAGE_MESSAGE, {
+  //                 alt,
+  //                 url
+  //               });
+  //             });
+  //           }, 1000);
+  //         }
+  //       }
+  //     } else {
+  //       socket.emit(CLIENT_EVENTS.TYPING, false);
+  //     }
+  //   } 
+  // }, [message, userOnline]);
 
   return (
     <div className="im-container">
@@ -70,6 +107,7 @@ const InputMessage = () => {
         <input
           className="elements__input"
           onChange={ handleMessageChange }
+          placeholder="Message"
           type="text"
           value={ message }
         />

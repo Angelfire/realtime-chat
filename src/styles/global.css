@@ -1,1 +1,10 @@
 @import "reset.css";
+
+/* Global Colors */
+:root {
+  --green: #ff8202;
+  --grey-border: #d0d0d0;
+  --grey-date: #8b8b8b;
+  --grey-message: #bababa;
+  --grey-typing: #676767;
+}

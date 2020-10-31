@@ -3,6 +3,7 @@
 }
 
 .avatar-container img {
+  border-radius: 6px;
   height: 40px;
   width: 40px;
 }
