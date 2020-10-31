@@ -4,7 +4,8 @@
   "description": "Realtime chat Pager",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack serve --config config/webpack.dev.js"
+    "start": "NODE_ENV=development webpack serve --config config/webpack.dev.js",
+    "build": "NODE_ENV=development webpack --config config/webpack.dev.js"
   },
   "author": "",
   "license": "ISC",
