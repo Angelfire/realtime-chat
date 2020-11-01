@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import UserP from './contexts/UserP';
-import App from './App';
+import App from './components/App';
 
 const AppProvider = () => (
   <UserP>

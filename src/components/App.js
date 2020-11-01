@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Join from './components/Join/Join';
-import ChatInterceptor from './components/ChatRoom/ChatInterceptor';
+import Join from './Join/Join';
+import ChatInterceptor from './ChatRoom/ChatInterceptor';
 
-import './styles/global.css';
-import './styles/app.css';
+import '../styles/global.css';
+import '../styles/app.css';
 
 const App = () => {
   return (
