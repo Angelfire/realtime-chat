@@ -14,6 +14,7 @@ const ChatRoom = () => {
     setMessages,
     setTypers,
     setUserList,
+    setUserOffline,
     user,
   } = useContext(UserContext);
 
@@ -26,12 +27,16 @@ const ChatRoom = () => {
       setMessages(message);
     });
 
-    socket.on(SERVER_EVENTS.USER_CONNECTED, data => {
-      setUserList(data);
+    socket.on(SERVER_EVENTS.USER_CONNECTED, username => {
+      setUserList(username);
 
-      if (!userOnline && data === user) {
+      if (!userOnline && username === user) {
         setUserOnline(true);
       }
+    });
+
+    socket.on(SERVER_EVENTS.USER_DISCONNECTED, username => {
+      setUserOffline(username);
     });
   }, []);
 

@@ -7,7 +7,8 @@ export const UserP = ({ children }) => {
   const [stickers, setStickers] = useState([]);
   const [typers, setTypers] = useState({});
   const [user, setUser] = useState('');
-  const [userList, setUserList] = useState(['default']);
+  const [userList, setUserList] = useState('');
+  const [userOffline, setUserOffline] = useState('');
 
   return (
     <UserContext.Provider
@@ -21,21 +22,13 @@ export const UserP = ({ children }) => {
         setStickers,
         setTypers,
         setUser,
-        setUserList: onlineUser => {
-          setUserList(state => {
-            const currentUser = state.find(user => user === onlineUser);
-
-            if (!currentUser) {
-              return [...state, onlineUser];
-            } else {
-              return state;
-            }
-          });
-        },
+        setUserList,
+        setUserOffline,
         stickers,
         typers,
         user,
-        userList
+        userList,
+        userOffline
       }}
     >
       { children }

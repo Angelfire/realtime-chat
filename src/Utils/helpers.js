@@ -13,21 +13,12 @@ export const formatDate = date => {
   return `${formattedHours}:${formattedMinutes} ${ampm}`;
 }
 
-export const queryString = params =>
-  Object
-    .keys(params)
-    .map(key => {
-      return key + '=' + params[key];
-    })
-    .join('&');
-
-
 export const getGiphy = tag => 
   axios
-  .get(GIPHY_BASE_URL, {
-    params: {
-      api_key: GIPHY_API_KEY,
-      tag,
-    },
-  })
-  .then((resp) => resp.data.data);
+    .get(GIPHY_BASE_URL, {
+      params: {
+        api_key: GIPHY_API_KEY,
+        tag,
+      },
+    })
+    .then((resp) => resp.data.data);
