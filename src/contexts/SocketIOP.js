@@ -7,6 +7,7 @@ export const SocketIOContext = createContext({});
 const SocketIOP= ({ children, userName }) => {
   const [response, setResponse] = useState(false);
   const [userOnline, setUserOnline] = useState(false);
+  const [userOffline, setUserOffline] = useState('');
   const socket = useRef(
     socketIOClient(
       encodeURI(`${BE_INTEGRATION}/?username=${userName}`)
@@ -18,8 +19,10 @@ const SocketIOP= ({ children, userName }) => {
       value={{
         response,
         setResponse,
+        setUserOffline,
         setUserOnline,
         socket: socket.current,
+        userOffline,
         userOnline
       }}
     >

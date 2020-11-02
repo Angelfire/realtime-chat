@@ -48,6 +48,8 @@ const InputMessage = () => {
       } else {
         socket.emit(CLIENT_EVENTS.TYPING, false);
       }
+
+      setMessage('');
     }
   }
 

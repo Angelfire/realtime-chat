@@ -9,12 +9,16 @@ import { SERVER_EVENTS } from '../../Utils/const'
 import './chatroom.css';
 
 const ChatRoom = () => {
-  const { setUserOnline, socket, userOnline } = useContext(SocketIOContext);
+  const {
+    setUserOffline,
+    setUserOnline,
+    socket,
+    userOnline
+  } = useContext(SocketIOContext);
   const {
     setMessages,
     setTypers,
     setUserList,
-    setUserOffline,
     user,
   } = useContext(UserContext);
 

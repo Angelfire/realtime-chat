@@ -8,7 +8,7 @@ export const UserP = ({ children }) => {
   const [typers, setTypers] = useState({});
   const [user, setUser] = useState('');
   const [userList, setUserList] = useState('');
-  const [userOffline, setUserOffline] = useState('');
+
 
   return (
     <UserContext.Provider
@@ -23,12 +23,10 @@ export const UserP = ({ children }) => {
         setTypers,
         setUser,
         setUserList,
-        setUserOffline,
         stickers,
         typers,
         user,
         userList,
-        userOffline
       }}
     >
       { children }
